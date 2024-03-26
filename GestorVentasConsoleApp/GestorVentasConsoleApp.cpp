@@ -3,8 +3,17 @@
 /*
 * •	Crear una aplicación que gestione las ventas de una empresa.
 •	Implement
-•	Utilizar clases para representar productos, clientes, pedidos y facturas.
-•	Implementar métodos para gestionar las operaciones CRUD sobre los datos.ar funcionalidades como: registro de productos, registro de clientes, creación de pedidos, generación de facturas, control de stock.
+•	Utilizar clases para representar 
+		*productos 
+		*clientes 
+		*pedidos 
+		*facturas
+•	Implementar métodos para gestionar las operaciones CRUD sobre los datos.ar funcionalidades como: 
+		*registro de productos 
+		*registro de clientes 
+		*creación de pedidos 
+		*generación de facturas 
+		*control de stock
 */
 
 int main()
@@ -17,6 +26,9 @@ int main()
 		int option = app.showMenu();
 		switch (option)
 		{
+			case 1: 
+				app.customerMenu();
+				break;
 			case 9:
 				app.clear();
 				app.init();

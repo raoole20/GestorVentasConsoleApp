@@ -2,6 +2,7 @@
 #ifndef CUSTOMERS_H
 #define CUSTOMERS_H
 
+using namespace std;
 
 class Customers
 {
