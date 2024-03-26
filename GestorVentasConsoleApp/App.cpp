@@ -85,7 +85,8 @@ public:
 			cout << "2. Listar Clientes" << endl;
 			cout << "3. Modificar Cliente" << endl;
 			cout << "4. Eliminar Cliente" << endl;
-			cout << "5. Volver al menu principal" << endl;
+			cout << "5. Buscar Cliente por ID" << endl;
+			cout << "6. Volver al menu principal" << endl;
 
 			int option;
 			cin >> option;
@@ -210,7 +211,111 @@ public:
 					cin >> temp;
 				}
 					  break;
-				case 5:
+				case 4: {
+					this->clear();
+					this->printTitle("Eliminar Cliente");
+					cout << "Ingrese el ID del cliente a buscar: " << endl;
+					string id;
+					cin >> id;
+
+					auto find = false;
+					auto index = 0;
+					auto countIteration = 0;
+					for (auto c : this->customerList) {
+						if (id == c.getId()) {
+							cout << "Detalles del cliente: " << endl;
+							this->printSeparator(1);
+							this->printSeparator(1);
+							cout << endl << endl << endl;
+							c.displayUserInformation();
+							cout << endl << endl << endl;
+							this->printSeparator(1);
+							this->printSeparator(1);
+							cout << endl;
+							find = true;
+							index= countIteration;
+						}
+						countIteration++;
+					}
+
+					if (!find) {
+						this->printSeparator(1);
+						this->printSeparator(1);
+						cout << endl << endl << endl;
+						cout << "Cliente no encontrado" << endl;
+						cout << endl << endl << endl;
+						this->printSeparator(1);
+						this->printSeparator(1);
+						cout << endl;
+					}
+					else {
+						cout << "Desea eliminar al Cliente? " << endl;
+						cout << "(En caso de no escojer una opcion valida el usuario será eliminado)" << endl << endl;
+						cout << "1. Si" << endl;
+						cout << "2. No" << endl;
+						int deleteOption;
+						cin >> deleteOption;
+
+						switch (deleteOption)
+						{
+							case 2:
+								cout << "el usuario no ha sido eliminado" << endl;
+								break;
+							case 1:	
+							default:
+								this->customerList.erase(std::next(customerList.begin(), index));
+								cout << "el usuario ha sido eliminado" << endl;
+								this->printSeparator(1);
+								break;
+						}
+
+					}
+					cout << "Para continuar presione cualquier tecla y luego Enter" << endl;
+					string temp;
+					cin >> temp;
+
+				}
+					break;
+				case 5: {
+					this->clear();
+					this->printTitle("Buscar Cliente");
+					cout << "Ingrese el ID del cliente a buscar: " << endl;
+					string id;
+					cin >> id;
+
+					auto find = false;
+					for (auto c : this->customerList) {
+						if (id == c.getId()) {	
+							cout << "Detalles del cliente: " << endl;
+							this->printSeparator(1);
+							this->printSeparator(1);
+							cout << endl << endl << endl;
+							c.displayUserInformation();
+							cout << endl << endl << endl;
+							this->printSeparator(1);
+							this->printSeparator(1);
+							cout << endl;
+							find = true;
+						}	
+					}
+
+					if (!find) {
+						this->printSeparator(1);
+						this->printSeparator(1);
+						cout << endl << endl << endl;
+						cout << "Cliente no encontrado" << endl;
+						cout << endl << endl << endl;
+						this->printSeparator(1);
+						this->printSeparator(1);
+						cout << endl;
+					}
+					cout << "Para continuar presione cualquier tecla y luego Enter" << endl;
+					string temp;
+					cin >> temp;
+						
+				}
+					  break;
+				case 6:
 					continueProcess = false;
 					break;
 				default:
