@@ -158,6 +158,58 @@ public:
 					cin >> temp;
 				}
 					  break;
+				case 3: {
+					this->clear();
+					this->printTitle("Modificar Cliente");
+					cout << "Ingrese el ID del cliente a modificar" << endl;
+					string id;
+					cin >> id;
+
+					auto customerFound = false;
+					for (auto c : this->customerList) {
+						if (c.getId() == id) {
+							customerFound = true;
+							this->printTitle("Cliente");
+							cout << endl;
+							cout << "detalles del usuario:";
+							cout << endl << endl << endl;
+							c.displayUserInformation();
+							cout << endl << endl << endl;
+
+							cout << "Desea modificar al Cliente" << endl;
+							cout << "1. Si" << endl;
+							cout << "2. No" << endl;
+							string temp;
+							cin >> temp;
+
+							if (temp == "1") {	
+								c.modifiCustomer();
+								cout << endl << endl << endl;
+								this->printSeparator(1);
+								this->printSeparator(1);
+								cout << endl;
+								cout << "Cliente modificado con exito: " << endl;
+								this->printSeparator(1);
+								this->printSeparator(1);
+								cout << endl << endl;
+
+								c.displayUserInformation();
+							}
+							else {
+								cout << "Cliente no modificado" << endl;
+							}
+						}
+					}
+
+					if (!customerFound) {
+						cout << "Cliente no encontrado" << endl;
+					}
+
+					cout << "Para continuar presione cualquier tecla y luego Enter" << endl;
+					string temp;
+					cin >> temp;
+				}
+					  break;
 				case 5:
 					continueProcess = false;
 					break;
