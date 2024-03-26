@@ -27,7 +27,7 @@ public:
 		this->printTitle("MENU PRINCIPAL");
 		cout << "Seleccione una opcion:" << endl << endl;
 		cout << "1. Modulo de Clientes" << endl;
-		//cout << "3. Registrar Producto" << endl;
+		cout << "2. Modulo de Producto" << endl;
 		//cout << "4. Listar Productos" << endl;
 		//cout << "5. Crear Pedido" << endl;
 		//cout << "6. Listar Pedidos" << endl;
@@ -327,6 +327,48 @@ public:
 					break;
 			}
 		}
+	}
+
+	void productMenu() {
+		auto continueProcess = true;
+
+		do {
+			this->clear();
+			this->printTitle("MENU DE PRODUCTOS");
+			cout << "Seleccione una opcion:" << endl << endl;
+			cout << "1. Registrar Producto" << endl;
+			cout << "2. Listar Productos" << endl;
+			cout << "3. Modificar Producto" << endl;
+			cout << "4. Eliminar Producto" << endl;
+			cout << "5. Buscar Producto por ID" << endl;
+			cout << "6. Volver al menu principal" << endl;
+
+			int option;
+			cin >> option;
+			switch (option)
+			{
+				case 1:
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+				case 4:
+					break;
+				case 5:
+					break;
+				case 6:
+					continueProcess = false;
+					break;
+				default:
+					this->clear();
+					cout << "Opcion no valida, Intente nuevamente" << endl;
+					cout << "Para continuar presione cualquier tecla y luego Enter" << endl;
+					string temp;
+					cin >> temp;
+					break;
+			}
+		} while (continueProcess);
 	}
 
 	bool getRun() {

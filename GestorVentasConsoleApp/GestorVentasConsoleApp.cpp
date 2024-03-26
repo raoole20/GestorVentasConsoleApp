@@ -29,6 +29,9 @@ int main()
 			case 1: 
 				app.customerMenu();
 				break;
+			case 2: 
+				app.productMenu();
+				break;
 			case 9:
 				app.clear();
 				app.init();

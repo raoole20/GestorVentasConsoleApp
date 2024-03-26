@@ -1,14 +1,8 @@
 #include <iostream>
 #include <random>
 #include <sstream>
+#include "UUID.cpp"
 using namespace std;
-
-
-struct Identify
-{
-	int _id;
-	Identify() { static int id = 1; _id = id++; }
-};
 
 class Customers
 {

@@ -25,13 +25,16 @@
     <Filter Include="Source Files\Classes\Service">
       <UniqueIdentifier>{3e3e3696-9b78-4a41-82ef-8c584e45273c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Classes\Product.cpp">
+      <UniqueIdentifier>{dc3759de-5b5c-4859-b0da-4ff5de8098a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{0f4d3589-9c26-464b-8d02-ebe1e0e14fd7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GestorVentasConsoleApp.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Product.cpp">
-      <Filter>Source Files\Classes</Filter>
     </ClCompile>
     <ClCompile Include="Customer.cpp">
       <Filter>Source Files\Classes\Customer</Filter>
@@ -42,13 +45,11 @@
     <ClCompile Include="Service.cpp">
       <Filter>Source Files\Classes\Service</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Customer.h">
-      <Filter>Source Files\Classes\Customer</Filter>
-    </ClInclude>
-    <ClInclude Include="App.h">
-      <Filter>Source Files\Classes\App</Filter>
-    </ClInclude>
+    <ClCompile Include="Product.cpp">
+      <Filter>Source Files\Classes\Product.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="UUID.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

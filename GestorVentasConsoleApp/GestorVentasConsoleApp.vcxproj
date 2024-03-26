@@ -132,10 +132,7 @@
     <ClCompile Include="GestorVentasConsoleApp.cpp" />
     <ClCompile Include="Product.cpp" />
     <ClCompile Include="Service.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="App.h" />
-    <ClInclude Include="Customer.h" />
+    <ClCompile Include="UUID.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
