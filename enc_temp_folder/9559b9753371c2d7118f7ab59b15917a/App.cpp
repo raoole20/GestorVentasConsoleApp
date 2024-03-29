@@ -421,68 +421,6 @@ public:
 				case 3:
 					break;
 				case 4:
-					{
-						this->clear();
-						this->printTitle("Eliminar Producto");
-						cout << "Ingrese el ID del producto a buscar: " << endl;
-						string id;
-						cin >> id;
-
-						auto find = false;
-						auto index = 0;
-						auto countIteration = 0;
-						for (auto p : this->productList) {
-							if (id == p.getId()) {
-								cout << "Detalles del producto: " << endl;
-								this->printSeparator(1);
-								this->printSeparator(1);
-								cout << endl << endl << endl;
-								p.displayProductInformation();
-								cout << endl << endl << endl;
-								this->printSeparator(1);
-								this->printSeparator(1);
-								cout << endl;
-								find = true;
-								index = countIteration;
-							}
-							countIteration++;
-						}
-
-						if (!find) {
-							this->printSeparator(1);
-							this->printSeparator(1);
-							cout << endl << endl << endl;
-							cout << "Producto no encontrado" << endl;
-							cout << endl << endl << endl;
-							this->printSeparator(1);
-							this->printSeparator(1);
-							cout << endl;
-						}
-						else {
-							cout << "Desea eliminar al Producto? " << endl;
-							cout << "(En caso de no escojer una opcion valida el producto será eliminado)" << endl << endl;
-							cout << "1. Si" << endl;
-							cout << "2. No" << endl;
-							int deleteOption;
-							cin >> deleteOption;
-
-							switch (deleteOption)
-							{
-							case 2:
-								cout << "el producto no ha sido eliminado" << endl;
-								break;
-							case 1:
-							default:
-								this->productList.erase(std::next(productList.begin(), index));
-								cout << "el producto ha sido eliminado" << endl;
-								this->printSeparator(1);
-								break;
-							}
-						}
-						cout << "Para continuar presione cualquier tecla y luego Enter" << endl;
-						string temp;
-						cin >> temp;		
-					}
 					break;
 				case 5:
 					{

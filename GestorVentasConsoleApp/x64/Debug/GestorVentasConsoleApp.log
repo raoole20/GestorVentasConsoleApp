@@ -1,1 +1,8 @@
-﻿  GestorVentasConsoleApp.vcxproj -> C:\Users\raool\OneDrive\Escritorio\urbe\c++\basic-cpp\GestorVentasConsoleApp\x64\Debug\GestorVentasConsoleApp.exe
+﻿  App.cpp
+  Customer.cpp
+  GestorVentasConsoleApp.cpp
+  Product.cpp
+  Service.cpp
+  UUID.cpp
+  Generating Code...
+  GestorVentasConsoleApp.vcxproj -> C:\Users\raool\OneDrive\Escritorio\urbe\c++\basic-cpp\GestorVentasConsoleApp\x64\Debug\GestorVentasConsoleApp.exe
