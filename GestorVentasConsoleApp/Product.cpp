@@ -88,6 +88,53 @@ public:
 		cout << "Precio de oferta del producto: " << this->offerPrice << endl;
 	}		
 
+	void modifiProduct() {
+		string colums[5] = { "Nombre", "Descripcion", "Precio", "Stock", "Oferta" };
+		for (auto colum : colums) {
+			auto valid = false;
+			do {
+				if (colum != "Oferta") {
+					cout << "Ingrese el nuevo " << colum << " del producto: ";
+					string value;
+					cin >> value;
+
+					if (colum == "Nombre") {
+						this->setName(value);
+					}
+					else if (colum == "Descripcion") {
+						this->setDescription(value);
+					}
+					else if (colum == "Precio") {
+						auto price = stof(value);
+						this->setPrice(price);
+					}
+					else {
+						this->setStock(stoi(value));
+					}
+
+					valid = true;
+				}
+				else {
+					cout << endl << endl << endl;
+					cout << "El producto tiene oferta? Si/No: " << endl;
+					cout << "Cualquier otra respuesta sera considerada como 'No'" << endl;
+					string offer;
+					cin >> offer;
+					if (offer == "Si" || offer == "si") {
+						this->setIsOffer(true);
+						cout << "Ingrese el precio de oferta del producto" << endl;
+						string offerPrice;
+						cin >> offerPrice;
+						auto offerPriceParser = stof(offerPrice);
+						this->setOfferPrice(offerPriceParser);
+					}
+					valid = true;
+				}
+			} while (!valid);
+		}
+	
+	}
+
 	string getId() {
 		return this->id;
 	}

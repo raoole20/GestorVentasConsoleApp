@@ -419,6 +419,57 @@ public:
 					}
 					break;
 				case 3:
+					{
+						this->clear();
+						this->printTitle("Modificar Producto");
+						cout << "Ingrese el ID del producto a modificar" << endl;
+						string id;
+						cin >> id;
+
+						auto productFound = false;
+						for (auto p : this->productList) {
+							if (p.getId() == id) {
+								productFound = true;
+								this->printTitle("Producto");
+								cout << endl;
+								cout << "detalles del producto:";
+								cout << endl << endl << endl;
+								p.displayProductInformation();
+								cout << endl << endl << endl;
+
+								cout << "Desea modificar al Producto" << endl;
+								cout << "1. Si" << endl;
+								cout << "2. No" << endl;
+								string temp;
+								cin >> temp;
+
+								if (temp == "1") {
+									p.modifiProduct();
+									cout << endl << endl << endl;
+									this->printSeparator(1);
+									this->printSeparator(1);
+									cout << endl;
+									cout << "Producto modificado con exito: " << endl;
+									this->printSeparator(1);
+									this->printSeparator(1);
+									cout << endl << endl;
+
+									p.displayProductInformation();
+								}
+								else {
+									cout << "Producto no modificado" << endl;
+								}
+							}
+						}
+
+						if (!productFound) {
+							cout << "Producto no encontrado" << endl;
+						}
+
+						cout << "Para continuar presione cualquier tecla y luego Enter" << endl;
+						string temp;
+						cin >> temp;
+					}
 					break;
 				case 4:
 					{
@@ -479,7 +530,7 @@ public:
 								break;
 							}
 						}
-						cout << "Para continuar presione cualquier tecla y luego Enter" << endl;
+						cout << endl << "Para continuar presione cualquier tecla y luego Enter" << endl;
 						string temp;
 						cin >> temp;		
 					}
