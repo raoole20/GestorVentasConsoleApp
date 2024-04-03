@@ -1,3 +1,6 @@
+#ifndef CUSTOMERS_h
+#define CUSTOMERS_h
+
 #include <iostream>
 #include <random>
 #include <sstream>
@@ -21,7 +24,7 @@ public:
 		cout << "Telefono del usuario: " << this->phone << endl;
 	};
 
-	Customers createNewCustomer () { 
+	Customers createNewCustomer (vector<Customers> customers) { 
 		Identify id;
 		string colums[4] = { "Nombre", "Apellido", "Email", "Telefono" };
 		Customers newCustomer("", "", "", "");
@@ -53,6 +56,11 @@ public:
 					if (colum == "Email") {
 						if (value.find("@") == string::npos) {
 							cout << "El email ingresado no es valido, intente nuevamente" << endl;
+							continue;
+						}
+
+						if (existCustomer(value, customers)) {
+							cout << "El email ingresado ya existe, intente nuevamente" << endl;
 							continue;
 						}
 						newCustomer.setEmail(value);
@@ -117,7 +125,16 @@ public:
 				}
 			} while (!valid);
 		}
-	}		
+	}	
+
+	bool existCustomer(string email, vector<Customers> customers) {
+		for (auto c : customers) {
+			if (c.getEmail() == email) {
+				return true;
+			}
+		}
+		return false;
+	}
 	string getId() { return this->id; };	
 	string getLastName() { return this->lastName; };
 	string getEmail() { return this->email; };
@@ -135,3 +152,5 @@ private:
 	string email;
 	string phone;
 };
+
+#endif // !CUSTOMERS_h

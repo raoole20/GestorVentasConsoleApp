@@ -1,20 +1,21 @@
 #include <iostream>
+#include <cstdlib>
 #include "UUID.cpp"
 #include "App.cpp"
 
 /*
-* •	Crear una aplicación que gestione las ventas de una empresa.
-•	Implement
-•	Utilizar clases para representar 
+* ï¿½	Crear una aplicaciï¿½n que gestione las ventas de una empresa.
+ï¿½	Implement
+ï¿½	Utilizar clases para representar 
 		*productos 
 		*clientes 
 		*pedidos 
 		*facturas
-•	Implementar métodos para gestionar las operaciones CRUD sobre los datos.ar funcionalidades como: 
+ï¿½	Implementar mï¿½todos para gestionar las operaciones CRUD sobre los datos.ar funcionalidades como: 
 		*registro de productos 
 		*registro de clientes 
-		*creación de pedidos 
-		*generación de facturas 
+		*creaciï¿½n de pedidos  
+		*generaciï¿½n de facturas 
 		*control de stock
 */
 
@@ -33,6 +34,9 @@ int main()
 				break;
 			case 2: 
 				app.productMenu();
+				break;
+			case 3:
+				app.salesMenu();
 				break;
 			case 9:
 				app.clear();

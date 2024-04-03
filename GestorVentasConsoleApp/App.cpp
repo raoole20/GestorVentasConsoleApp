@@ -4,6 +4,8 @@
 
 #include "Customer.cpp"
 #include "Product.cpp"
+#include "Sales.cpp"
+#include "ProductQuantity.cpp"
 
 using namespace std;
 
@@ -32,11 +34,7 @@ public:
 		cout << "Seleccione una opcion:" << endl << endl;
 		cout << "1. Modulo de Clientes" << endl;
 		cout << "2. Modulo de Producto" << endl;
-		cout << "-. Realizar Venta" << endl; // TODO: implementar
-		//cout << "5. Crear Pedido" << endl;
-		//cout << "6. Listar Pedidos" << endl;
-		//cout << "7. Generar Factura" << endl;
-		//cout << "8. Listar Facturas" << endl;
+		cout << "3. Modulo de Pedidos/Ventas" << endl;
 		cout << "9. Mostrar Integrantes" << endl;
 		cout << "10. Salir" << endl;
 
@@ -69,7 +67,7 @@ public:
 		this->printSeparator(1);
 		cout << endl << endl << endl;
 		cout << "* Raul Espina: 30.643.473" << endl;
-		cout << "* Arelenys Dávila: 00.000.000" << endl;
+		cout << "* Arelenys Dávila: 15.764.502" << endl;
 		cout << "Pulsar cualquier tecla para continuar..." << endl;
 		string temp;
 		cin >> temp;
@@ -101,7 +99,7 @@ public:
 					this->printTitle("REGISTRO DE CLIENTES");
 					cout << "Por favor ingrese los datos del cliente";
 					cout << endl << endl << endl;
-					auto customer = customerService.createNewCustomer();
+					auto customer = customerService.createNewCustomer(customerList);
 					cout << endl << endl << endl;
 
 					this->printTitle("Cliente");
@@ -588,6 +586,190 @@ public:
 		} while (continueProcess);
 	}
 
+	void salesMenu() {
+		auto continueProcess = true;
+		while (continueProcess) {
+			this->clear();
+			this->printTitle("MENU DE VENTAS");
+			cout << "Seleccione una opcion:" << endl << endl;
+			cout << "1. Crear Pedido" << endl;
+			cout << "2. Listar Facturas" << endl;
+			cout << "5. Volver al menu principal" << endl;
+
+			int option;
+			cin >> option;
+			switch (option)
+			{
+				case 1:
+				{
+					this->clear();
+					this->printTitle("Pedido");
+					cout << "Por favor ingrese los datos del pedido";
+					cout << endl << endl << endl;
+					this->printSeparator(1);
+					this->printSeparator(1);
+					cout << endl;
+					cout << "Introduzca el ID del cliente o el correo del mismo: ";
+					string customerId;
+					cin >> customerId;
+
+					auto customerFound = false;
+					Customers customer;
+					for (auto c : this->customerList) {
+						if (c.getId() == customerId || c.getEmail() == customerId) {
+							customerFound = true;
+							customer = c;
+						}
+					}
+
+					if (!customerFound) {
+						cout << "Cliente no encontrado" << endl;
+						cout << "Desea registrar al cliente? " << endl;
+						cout << "cualquier opcion diferente a 1 o \"si\" sera considerado como un no" << endl;
+						cout << "1. Si" << endl;
+						cout << "2. No" << endl;
+						string temp;
+						cin >> temp;
+
+						if (temp == "1" || temp == "si") {
+							customer = this->customerService.createNewCustomer(customerList);
+							cout << "Cliente registrado con exito" << endl;
+							this->printSeparator(1);
+							this->printSeparator(1);
+							cout << endl;
+							customer.displayUserInformation();
+							cout << endl;
+							this->printSeparator(1);
+							this->printSeparator(1);
+							cout << endl;
+							this->customerList.push_back(customer);
+							cout << "Cliente guardado con exito" << endl;
+						}
+						else {
+							cout << "Pedido no creado" << endl;
+							this->pause();
+							break;
+						}
+					}
+
+					vector<ProductQuantity> products;
+					bool continueithProducts = true;
+					do {
+						cout << "Introduzca el ID del producto que desea registrar: ";
+						Product currentProduct; 
+						string productId;
+						int	quantity;
+						cin >> productId;
+						auto productFound = false;
+						for (auto p : this->productList) {
+							if (p.getId() == productId) {
+								productFound = true;
+								currentProduct = p;
+							}
+						}
+
+						if (!productFound) {
+							this->printSeparator(1);
+							this->printSeparator(1);
+							cout << endl;
+							cout << endl;
+							cout << "Producto no encontrado" << endl;
+							cout << endl;
+							this->printSeparator(1);
+							this->printSeparator(1);
+						}
+						else {
+							auto continueWithSubProcess = true;
+							do {
+								cout << "Ingresa la cantidad del producto: " << endl;
+								cin >> quantity;
+
+								if (quantity > currentProduct.getStock()) {
+									cout << endl;
+									this->printSeparator(1);
+									this->printSeparator(1);	
+									cout << endl;
+									cout << "La cantidad ingresada supera el stock del producto" << endl;
+									cout << "Stock actual: " << currentProduct.getStock() << endl;
+									cout << "Desea ingresar una cantidad menor? " << endl;
+									cout << "cualquier opcion diferente a 1 o \"si\" sera considerado como un no" << endl;
+									cout << "1. Si" << endl;
+									cout << "2. No" << endl;
+									this->printSeparator(1);
+									this->printSeparator(1);
+									cout << endl;
+
+									string temp;
+									cin >> temp;
+									if (temp != "1" && temp != "si") {
+										continueWithSubProcess = false;
+									}
+								}
+								else {
+									cout << "Producto agregado al pedido..." << endl;
+									currentProduct.setStock(currentProduct.getStock() - quantity);
+									products.push_back({ quantity, currentProduct });
+									continueWithSubProcess = false;
+								}
+							} while (continueWithSubProcess);
+						}
+
+						cout << endl << endl << endl;
+						cout << "Desea registrar otro producto? " << endl;
+						cout << "cualquier opcion diferente a 1 o \"si\" sera considerado como un no" << endl;
+						cout << "1. Si" << endl;
+						cout << "2. No" << endl;
+						string temp;
+						cin >> temp;
+
+						if (temp != "1" && temp != "si") {
+							continueProcess = false;
+						}
+					} while (continueProcess);
+
+					if (products.size() == 0) {
+						cout << "No se ha introducido los suficientes productos para crear el pedido" << endl;
+						cout << "Pedido no creado" << endl;
+						this->pause();
+						break;
+					}
+
+					Sales sale(customer, products);
+					this->clear();
+					this->printTitle("");
+					cout << endl <<endl << endl;
+					this->printSeparator(1);
+					this->printSeparator(1);
+					cout << endl;
+					sale.displaySalesInformation();
+					cout << endl << endl << endl;
+
+					this->salesList.push_back(sale);
+					this->pause();
+				}
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+				case 4:
+					break;
+				case 5:
+					continueProcess = false;
+					break;
+				default:
+					this->clear();
+					cout << "Opcion no valida, Intente nuevamente" << endl;
+					this->pause();
+					break;
+			}
+		}
+	}
+
+	void pause() {
+		cout << "Para continuar presione cualquier tecla y luego Enter" << endl;
+		system("pause");
+	}
 	bool getRun() {
 		return this->run;
 	}
@@ -595,6 +777,7 @@ private:
 	bool run = true;
 	vector<Customers> customerList;
 	vector<Product> productList;
+	vector<Sales> salesList;
 	Customers customerService;
 	Product productService;
 };

@@ -31,6 +31,9 @@
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{0f4d3589-9c26-464b-8d02-ebe1e0e14fd7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Classes\Sales">
+      <UniqueIdentifier>{6f0c89c7-71d2-45ca-9c1f-9ed9a5f4d30b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GestorVentasConsoleApp.cpp">
@@ -49,6 +52,12 @@
       <Filter>Source Files\Classes\Product.cpp</Filter>
     </ClCompile>
     <ClCompile Include="UUID.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Sales.cpp">
+      <Filter>Source Files\Classes\Sales</Filter>
+    </ClCompile>
+    <ClCompile Include="ProductQuantity.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
   </ItemGroup>

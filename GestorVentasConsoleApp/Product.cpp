@@ -1,3 +1,6 @@
+#ifndef PRODUCT_H
+#define PRODUCT_H
+
 #include <iostream>
 #include <vector>
 #include <cstdlib>
@@ -24,8 +27,6 @@ public:
 		cout << "Descripcion del producto: " << this->description << endl;
 		cout << "Precio del producto: " << this->price << endl;
 		cout << "Stock del producto: " << this->stock << endl;
-		cout << "Oferta del producto: " << this->isOffer << endl;
-		cout << "Precio de oferta del producto: " << this->offerPrice << endl;
 	};
 
 	Product createNewProduct() {
@@ -58,19 +59,7 @@ public:
 					valid = true;
 				}
 				else {
-					cout << endl << endl << endl;
-					cout << "El producto tiene oferta? Si/No: " << endl;
-					cout << "Cualquier otra respuesta sera considerada como 'No'" << endl;
-					string offer;
-					cin >> offer;
-					if (offer == "Si" || offer == "si") {
-						newProduct.setIsOffer(true);
-						cout << "Ingrese el precio de oferta del producto" << endl;
-						string offerPrice;
-						cin >> offerPrice;
-						auto offerPriceParser = stof(offerPrice);
-						newProduct.setOfferPrice(offerPriceParser);
-					}	
+				
 					valid = true;
 				}
 			} while (!valid);
@@ -84,8 +73,6 @@ public:
 		cout << "Descripcion del producto: " << this->description << endl;
 		cout << "Precio del producto: " << this->price << endl;
 		cout << "Stock del producto: " << this->stock << endl;
-		cout << "Oferta del producto: " << this->isOffer << endl;
-		cout << "Precio de oferta del producto: " << this->offerPrice << endl;
 	}		
 
 	void modifiProduct() {
@@ -190,3 +177,5 @@ private:
 	bool isOffer;
 	float offerPrice;
 };
+
+#endif // PRODUCT_H

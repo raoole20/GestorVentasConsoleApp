@@ -131,6 +131,8 @@
     <ClCompile Include="Customer.cpp" />
     <ClCompile Include="GestorVentasConsoleApp.cpp" />
     <ClCompile Include="Product.cpp" />
+    <ClCompile Include="ProductQuantity.cpp" />
+    <ClCompile Include="Sales.cpp" />
     <ClCompile Include="Service.cpp" />
     <ClCompile Include="UUID.cpp" />
   </ItemGroup>
